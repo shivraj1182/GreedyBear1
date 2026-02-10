@@ -87,7 +87,7 @@ class IOC(models.Model):
         related_name="iocs"
     )
     recurrence_probability = models.FloatField(blank=False, null=True, default=0)
-           expected_interactions = models.FloatField(blank=False, null=True, default=0)
+               expected_interactions = models.FloatField(blank=False, null=True, default=0)
 
     class Meta:
         indexes = [
