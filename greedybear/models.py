@@ -79,15 +79,9 @@ class IOC(models.Model):
     destination_ports = pg_fields.ArrayField(models.IntegerField(), blank=False, null=False, default=list)
     login_attempts = models.IntegerField(blank=False, null=False, default=0)
     # SCORES
-    autonomous_system = models.ForeignKey(
-        AutonomousSystem,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="iocs"
-    )
+    autonomous_system = models.ForeignKey(AutonomousSystem, on_delete=models.SET_NULL, null=True, blank=True, related_name="iocs")
     recurrence_probability = models.FloatField(blank=False, null=True, default=0)
-               expected_interactions = models.FloatField(blank=False, null=True, default=0)
+    expected_interactions = models.FloatField(blank=False, null=True, default=0)
 
     class Meta:
         indexes = [

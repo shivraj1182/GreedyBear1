@@ -112,24 +112,21 @@ def iocs_from_hits(hits: list[dict]) -> list[IOC]:
             continue
 
         firehol_categories = get_firehol_categories(ip, extracted_ip)
-        
+
         # Get or create AutonomousSystem
         asn_number = hits[0].get("geoip", {}).get("asn")
         as_name = hits[0].get("geoip", {}).get("as_organization", "")
         autonomous_system = None
         if asn_number:
-            autonomous_system, _ = AutonomousSystem.objects.get_or_create(
-                asn=asn_number,
-                defaults={"name": as_name}
-            )
+            autonomous_system, _ = AutonomousSystem.objects.get_or_create(asn=asn_number, defaults={"name": as_name})
 
         ioc = IOC(
             name=ip,
             type=get_ioc_type(ip),
             interaction_count=len(hits),
             ip_reputation=correct_ip_reputation(ip, hits[0].get("ip_rep", "")),
-                                    destination_ports=sorted(set(dest_ports)),
-                        autonomous_system=autonomous_system,
+            destination_ports=sorted(set(dest_ports)),
+            autonomous_system=autonomous_system,
             login_attempts=len(hits) if hits[0].get("type", "") == "Heralding" else 0,
             firehol_categories=firehol_categories,
         )
