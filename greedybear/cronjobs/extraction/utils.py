@@ -8,7 +8,13 @@ import requests
 from django.conf import settings
 
 from greedybear.consts import DOMAIN, IP
-from greedybear.models import IOC, FireHolList, MassScanner, WhatsMyIPDomaiAutonomousSystem, IOC, FireHolList, MassScanner, WhatsMyIPDomain
+from greedybear.models import (
+    IOC,
+    FireHolList, 
+    MassScanner,
+    WhatsMyIPDomain,
+    AutonomousSystem,
+)
 
 
 def is_whatsmyip_domain(domain: str) -> bool:
