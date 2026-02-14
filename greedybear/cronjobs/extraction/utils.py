@@ -10,10 +10,10 @@ from django.conf import settings
 from greedybear.consts import DOMAIN, IP
 from greedybear.models import (
     IOC,
+    AutonomousSystem,
     FireHolList,
     MassScanner,
     WhatsMyIPDomain,
-    AutonomousSystem,
 )
 
 
